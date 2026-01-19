@@ -31,7 +31,7 @@ const MessageSchema = new Schema<IMessage>(
     timestamps: true,
   },
 );
-MessageSchema.index({ chatId: 1, senderId: 1 }, { unique: true });
+MessageSchema.index({ chatId: 1, senderId: 1 });
 
 const Message = mongoose.model("Message", MessageSchema);
 export default Message;

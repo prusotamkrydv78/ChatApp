@@ -23,7 +23,7 @@ const UserSchema = new Schema<IUser>(
     email: {
       type: String,
       required: true,
-      uniqe: true,
+      unique: true,
       trim: true,
       lowercase: true,
     },
@@ -33,7 +33,6 @@ const UserSchema = new Schema<IUser>(
     },
     avatar: {
       type: String,
-      required: true,
     },
   },
   {
