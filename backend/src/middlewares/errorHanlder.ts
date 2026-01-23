@@ -1,14 +1,14 @@
-import type { ErrorRequestHandler, NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 
 export const errorHandler = (
   err: Error,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction,
+  _next: NextFunction,
 ) => {
-    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-    res.status(statusCode).json({
-        status: "error",
-        message: err.message,
-    });
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode).json({
+    status: "error",
+    message: err.message,
+  });
 };

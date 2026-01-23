@@ -1,9 +1,13 @@
-import type { Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 import type { AuthRequest } from "../middlewares/auth";
 import User from "../models/User";
 import { clerkClient, getAuth } from "@clerk/express";
 
-export const getMe = async (req: AuthRequest, res: Response) => {
+export const getMe = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { userId } = req;
     if (!userId) {
@@ -17,13 +21,15 @@ export const getMe = async (req: AuthRequest, res: Response) => {
     }
     return res.status(200).json({ status: "success", data: user });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: "error", message: "Internal server error" });
+    return next(error);
   }
 };
 
-export const authCallback = async (req: Request, res: Response) => {
+export const authCallback = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { userId: clerkId } = getAuth(req);
     if (!clerkId) {
@@ -48,8 +54,6 @@ export const authCallback = async (req: Request, res: Response) => {
     }
     return res.status(200).json({ status: "success", data: user });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: "error", message: "Internal server error" });
+    return next(error);
   }
 };
