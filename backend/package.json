@@ -18,6 +18,7 @@
     "@clerk/express": "^1.7.63",
     "@types/express": "^5.0.6",
     "express": "^5.2.1",
-    "mongoose": "^9.1.4"
+    "mongoose": "^9.1.4",
+    "socket.io": "^4.8.3"
   }
 }
